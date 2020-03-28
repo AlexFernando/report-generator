@@ -3,7 +3,6 @@ import Message from './Message';
 import Progress from './Progress';
 import DateForm from './DateForm';
 import axios from 'axios';
-//import Generate from './Generate';
 
 const FileUpload = () => {
   const [file, setFile] = useState('');
@@ -11,6 +10,7 @@ const FileUpload = () => {
   const [uploadedFile, setUploadedFile] = useState({});
   const [message, setMessage] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
+  const [dates, setDates] = useState('');
 
   const onChange = e => {
     setFile(e.target.files[0]);
@@ -55,11 +55,22 @@ const FileUpload = () => {
     }
   };
 
+  const getDates = (date) => {
+    
+    setDates(date);
+
+    const res = axios.post('/dates', dates)
+      .then(res => console.log('data send'))
+      .catch(err => console.log(err.data))
+
+    console.log(res.data);
+  }
+
   return (
     <Fragment>
       {message ? <Message msg={message} /> : null}
       
-      <DateForm />
+      <DateForm getDates={getDates}/>
 
       <form onSubmit={onSubmit}>
         <div className='custom-file mb-4'>
@@ -88,7 +99,7 @@ const FileUpload = () => {
             <h3 className='text-center'>{uploadedFile.fileName}</h3>
             {/*<img style={{ width: '100%' }} src={uploadedFile.filePath} alt='' />*/}
           </div>
-          {/*<Generate />*/}
+        
         </div>
 
        

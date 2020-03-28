@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-const DateForm = () => {
+const DateForm = (props) => {
+
   const [name, setName] = useState("");
   
   const handleSubmit = (evt) => {
       evt.preventDefault();
+      props.getDates(name)
       alert(`Submitting Name ${name}`)
   }
   return (

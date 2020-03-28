@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
-const myLogic = require('./client/src/myLogic');
+//const myLogic = require('./client/src/myLogic');
 
 //import path from 'path';
 //import express from 'express';
@@ -33,10 +33,14 @@ app.post('/upload', (req, res) => {
             return res.status(500).send(err)
         }
         res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
-        console.log("upload y empieza la logica")
-        res.send(myLogic.mySpecialFunction());
+        
     })
 });
+
+app.post('/dates', (req, res) => {
+    const myDates = req.files;
+    console.log(myDates);
+})
 
 app.get('/download', (req, res) => {
     console.log("descarga")
