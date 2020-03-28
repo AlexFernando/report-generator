@@ -37,6 +37,7 @@ app.post('/upload', (req, res) => {
     })
 });
 
+//este post para recibir el dato 
 app.post('/dates', (req, res) => {
     const myDates = req.files;
     console.log(myDates);

@@ -56,13 +56,17 @@ const FileUpload = () => {
   };
 
   const getDates = (date) => {
-    
+    //obtengo date de la función dentro del componente DateForm.js, es un dato dirigido de child-component a parent-component
+    //luego actualizo el state de este componente 
     setDates(date);
 
+    //aqui quiero hacer un htttp post enviando el state dates que contiene el dato
+    
     const res = axios.post('/dates', dates)
       .then(res => console.log('data send'))
       .catch(err => console.log(err.data))
 
+    //esto es undefined
     console.log(res.data);
   }
 
