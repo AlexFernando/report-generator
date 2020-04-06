@@ -1,7 +1,4 @@
-/*import React from 'react';
-import csv from 'csv-parser';
-import fs from 'fs';
-import officegen from 'officegen';
+import React from 'react';
 
 const Generate = () => {
 
@@ -10,15 +7,8 @@ const Generate = () => {
     }
 
     return ( 
- 
-    <input onSubmit={onGenerate} type='submit'value='Generate' className='btn btn-primary btn-block mt-4'/>
-        
-     );
+        <input onSubmit={onGenerate} type='submit'value='Generate' className='btn btn-primary btn-block mt-4'/>
+    );
 }
 
-
-
-
 export default Generate;
-
-*/

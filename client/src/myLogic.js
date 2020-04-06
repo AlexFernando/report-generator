@@ -14,8 +14,7 @@ import DateForm from './components/DateForm';*/
 //let myDates = DateForm.name;
 
 
-function mySpecialFunction(myName) {
-
+function mySpecialFunction(initialDate, endDate) {
 
 let results = []; //to save data after reading the file
 let filteredData = []; // data ready to write on the file 
@@ -46,8 +45,8 @@ function filterData(results) {
     for (let i in results) {
         let obj = results[i];
         let date = results[i]['Date'];
-        let date1 = '2019-11-04'; // parameters to filter (dates)
-        let date2 = '2019-11-22';
+        let date1 = initialDate; // parameters to filter (dates)
+        let date2 = endDate;
         //saving complete objects
         if (date >= date1 && date <= date2) {
             count++;
@@ -923,7 +922,7 @@ function filterData(results) {
 // return a Promise
 const readFilePromise = () => {
     return new Promise((resolve, reject) => {
-        fs.createReadStream(`/home/alexf/react_2020/REACT_FILE_UPLOAD/client/public/uploads/MyEBirdData.csv`)
+        fs.createReadStream(`/home/alexf/react_2020/REACT_FILE_UPLOAD/uploads/MyEBirdData.csv`)
             .pipe(csv())
             .on('data', data => results.push(data))
             .on('end', () => {
