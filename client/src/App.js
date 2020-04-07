@@ -1,13 +1,18 @@
 import React from 'react';
 import FileUpload from './components/FileUpload';
 import './App.css';
-import articuno from './images/articuno.jpeg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDove } from '@fortawesome/free-solid-svg-icons'
 
-const App = () => {
+const App = () => {      
+
+    const bird = <FontAwesomeIcon icon={faDove} size="xs" color="#007bff" />
+
     return ( 
     <div className = "container mt-4">
         <h4 className="display-4 text-center mb-4">
-            <p>Report Birding App</p>
+      
+            <p>{bird} Report Birding App</p>
         </h4>
 
         <FileUpload />

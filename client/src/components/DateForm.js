@@ -46,7 +46,7 @@ const DateForm = ({getDates}) => {
           </div>
       </div>  
 
-      <input type="submit" value="Submit" />    
+      <input type="submit" className='btn btn-primary btn-block mt-4' value="Submit" />    
     </form>
     </div>
 

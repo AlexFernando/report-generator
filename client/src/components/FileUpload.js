@@ -3,12 +3,11 @@ import Message from './Message';
 import Progress from './Progress';
 import DateForm from './DateForm';
 import axios from 'axios';
-import Generate from './Generate';
 import Spinner from './Spinner';
 import moltres from '../images/moltres.png';
-import articuno from '../images/articuno.jpeg';
+import articuno from '../images/articuno.png';
 import zapdos from '../images/zapdos.png';
-import LoadingOverlay from 'react-loading-overlay';
+
 
 const FileUpload = () => {
 
@@ -55,7 +54,7 @@ const FileUpload = () => {
      
       setMessage('Your file has been Uploaded');
       
-      setTimeout(() =>  setMessage('In order to generate your report, you need to enter the properly dates.'), 6000);
+      setTimeout(() =>  setMessage('In order to generate your report, you need to enter the correct dates with the format mm/dd/yyyy.'), 6000);
 
 
     } catch (err) {
@@ -71,16 +70,16 @@ const FileUpload = () => {
    setDates(date)
     //obtengo date de la función dentro del componente DateForm.js, es un dato dirigido de child-component a parent-component
     //luego actualizo el state de este componente    
-    setMessage('Now click on Generate Button in order to generate your report') 
+    setMessage('Now click on Generate Button below, in order to generate your report') 
     setUploadedFile('');
   }
 
-  console.log("soy dates: ", dates);
+ 
   
   const generate = async() => {
     setMessage('We are processing all the data, your file will be ready in a few seconds ...')
     setLoading('start loading');
-    console.log("first loading: ",loading)
+ 
     //aqui quiero hacer un htttp post enviando el state dates que contiene el dato
     const res =  await axios.post('http://localhost:5000/dates', { 
       myDates: dates})
@@ -92,7 +91,6 @@ const FileUpload = () => {
     setUploadedFile('');
     setGeneratedFile('yes');
     setDates({});
-    console.log("second loading: ",loading)
   }
 
   const onSubmitDownload = (e) => {
@@ -100,7 +98,14 @@ const FileUpload = () => {
     window.open('http://localhost:5000/download');
     setGeneratedFile('')
     setDownloadedFile('Done')
-    setMessage('Thanks you for using Report Birding App. Moltres is happy!')
+    setMessage('Thanks for using Report Birding App. Moltres is happy!')
+  }
+
+  const initialRender = (e) => {
+    e.preventDefault()
+    setUploadedFile('uploadForm');
+    setMessage('');
+    setDownloadedFile('');
   }
 
 
@@ -185,6 +190,7 @@ if(isEmpty(dates)) {
           {downloadedFile ? 
             <div className="text-center">
               <img src={moltres} alt="moltres" />
+              <input onClick={initialRender} type="button" value="Try Again" className="btn btn-primary btn-block mt-4" target="_self"/>
             </div>: null
           }
       </Fragment>
