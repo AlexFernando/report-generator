@@ -43,8 +43,9 @@ app.post('/upload', (req, res) => {
 //este post para recibir el dato 
 app.post('/dates', (req, res) => {
     const myDates = req.body.myDates;
-    //console.log("son las dates que quiero: ", myDates.initialDate," ",myDates.endDates);
-    myLogic.mySpecialFunction(myDates.initialDate, myDates.endDate);
+    const filename = req.body.filename;
+    console.log("son las dates que quiero: ", myDates.initialDate," ",myDates.endDate, " filename: ", filename);
+    myLogic.mySpecialFunction(myDates.initialDate, myDates.endDate, filename);
     myDates["loading"] = '';
     res.json(myDates)
     
@@ -52,9 +53,9 @@ app.post('/dates', (req, res) => {
 
 app.get('/download', (req, res) => {
     console.log("descarga")
-    const docPath = path.join(__dirname, 'exampleSeptiembre.docx');
+    const docPath = path.join(__dirname, 'Report.docx');
  
-    res.download(docPath, 'exampleSeptiembre.docx', function(err){
+    res.download(docPath, 'Report.docx', function(err){
       if (err) {
         // if the file download fails, we throw an error
         throw err;

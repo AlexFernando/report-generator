@@ -82,7 +82,7 @@ const FileUpload = () => {
  
     //aqui quiero hacer un htttp post enviando el state dates que contiene el dato
     const res =  await axios.post('http://localhost:5000/dates', { 
-      myDates: dates})
+      myDates: dates, filename: filename})
       .then(res => setLoading(res.data.loading))
       .catch(err => console.log(err.data))
 
@@ -104,6 +104,7 @@ const FileUpload = () => {
   const initialRender = (e) => {
     e.preventDefault()
     setUploadedFile('uploadForm');
+    setFilename('Choose File');
     setMessage('');
     setDownloadedFile('');
   }
