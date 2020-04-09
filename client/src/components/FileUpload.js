@@ -59,7 +59,7 @@ const FileUpload = () => {
 
     } catch (err) {
       if (err.response.status === 500) {
-        setMessage('There was a problem with the server');
+        setMessage('There was a problem with the server. Refresh the page and try uploading your file again');
       } else {
         setMessage(err.response.data.msg);
       }
