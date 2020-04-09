@@ -17,6 +17,7 @@
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
         "@fortawesome/react-fontawesome": "^0.1.9",
         "cors": "^2.8.5",
+        "csv-parser": "^2.3.2",
         "downloadjs": "^1.4.7",
         "express": "^4.17.1",
         "express-fileupload": "^1.1.6"
