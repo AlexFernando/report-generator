@@ -14,8 +14,6 @@ function mySpecialFunction(initialDate, endDate, filename) {
 
     let filenameUploaded = filename;
     
-    console.log("filename: ", filenameUploaded);
-    
     let familyData = excelData.familyResults();
     
     let commentsData = excelComments.commentsResults();
@@ -135,9 +133,6 @@ function mySpecialFunction(initialDate, endDate, filename) {
         finalArrOfSsp = [...setOfSsp];
         finalArrOfSspNames = [...setOfSspNames];
       
-    
-        console.log("array of ssp", finalArrOfSsp, '   ', finalArrOfSspNames, '   ', arrOfLocationSsp);
-    
         //delete some duplicate keys
         deleteDuplicates = cleanKeys.reduce((accumulator, curr) => {
     
@@ -187,10 +182,6 @@ function mySpecialFunction(initialDate, endDate, filename) {
             matchComments = commentsData.find(myElem => myElem['EnglishName'].trim() === elem['Common Name'])
     
             if (matchComments) {
-                console.log("comentarios: " ,matchComments);
-                /*if(elem['EnglishName'] === 'Booted Racket-tail'){
-                    console.log(matchComments);
-                }*/
                 elem = {...elem, ...matchComments }
             }
 
@@ -264,23 +255,16 @@ function mySpecialFunction(initialDate, endDate, filename) {
             }
         }
     
-    
-    
-        //console.log("grupos: ", myArrayOfGroups);
-    
         const mySet = new Set(myArrayOfGroups); 
     
         arrayOfFinalGroups = [...mySet];
     
         for (let i = 0; i < arrayOfFinalGroups.length - 1; i++) {
-            //console.log("este es una coincidence: ", arrayOfFinalGroups[i].match(regExpGroup));
             if (arrayOfFinalGroups[i].match(regExpGroup)) {
                 arrayOfFinalGroups[i] = "NoGroup";
             }
         }
-        
-        console.log("grupos finales", arrayOfFinalGroups);
-    
+            
         let numIndex = 0;
         let subIndex = 0;
         let newIndexBoldWord = -1;
