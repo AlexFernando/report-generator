@@ -81,7 +81,7 @@ const FileUpload = () => {
     setLoading('start loading');
  
     //aqui quiero hacer un htttp post enviando el state dates que contiene el dato
-    const res =  await axios.post('https://birdingreport.herokuapp/dates', { 
+    const res =  await axios.post('/dates', { 
       myDates: dates, filename: filename})
       .then(res => setLoading(res.data.loading))
       .catch(err => console.log(err.data))
@@ -95,7 +95,7 @@ const FileUpload = () => {
 
   const onSubmitDownload = (e) => {
     e.preventDefault()
-    window.open('https://birdingreport.herokuapp/download');
+    window.open('/download');
     setGeneratedFile('')
     setDownloadedFile('Done')
     setMessage('Thanks for using Report Birding App. Moltres is happy!')
