@@ -5,10 +5,8 @@ const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser')
 const myLogic = require('./client/src/myLogic');
 
-//import path from 'path';
-//import express from 'express';
-//import cors from 'cors';
-//import fileUpload from 'express-fileupload';
+//heroku config
+const port = process.env.PORT || 5000;
 
 const app = express();
 
@@ -44,7 +42,6 @@ app.post('/upload', (req, res) => {
 app.post('/dates', (req, res) => {
     const myDates = req.body.myDates;
     const filename = req.body.filename;
-    console.log("son las dates que quiero: ", myDates.initialDate," ",myDates.endDate, " filename: ", filename);
     myLogic.mySpecialFunction(myDates.initialDate, myDates.endDate, filename);
     myDates["loading"] = '';
     res.json(myDates)
@@ -52,7 +49,6 @@ app.post('/dates', (req, res) => {
 })
 
 app.get('/download', (req, res) => {
-    console.log("descarga")
     const docPath = path.join(__dirname, 'Report.docx');
  
     res.download(docPath, 'Report.docx', function(err){
@@ -60,8 +56,7 @@ app.get('/download', (req, res) => {
         // if the file download fails, we throw an error
         throw err;
       }
-      console.log('Someone just downloaded our file!');
     });
   })
 
-app.listen(5000, () => console.log('Server Started...'));
+app.listen(port, () => console.log( `Server Started...port ${port}`));
