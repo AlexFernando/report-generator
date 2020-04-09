@@ -2,6 +2,12 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+
+  "engines": {
+    "node": "13.9.x",
+    "npm": "6.13.x"
+  },
+  
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -14,6 +20,7 @@
     "react-scripts": "3.4.0",
     "xlsx": "^0.15.6"
   },
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
