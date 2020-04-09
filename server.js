@@ -59,4 +59,8 @@ app.get('/download', (req, res) => {
     });
   })
 
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/client/src/index.js'));
+  });
+
 app.listen(port, () => console.log( `Server Started...port ${port}`));
