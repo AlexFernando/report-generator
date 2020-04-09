@@ -78,6 +78,7 @@ function mySpecialFunction(initialDate, endDate, filename) {
         let arrayOfPoppedElem = [];
         let arrayOfFinalGroups = [];
         let matchComments = [];
+        let finalMatchComments = [];
     
         filteredData.map(elem => {
     
@@ -135,7 +136,7 @@ function mySpecialFunction(initialDate, endDate, filename) {
         finalArrOfSspNames = [...setOfSspNames];
       
     
-        console.log(finalArrOfSsp, ' ', finalArrOfSspNames, ' ', arrOfLocationSsp);
+        console.log("array of ssp", finalArrOfSsp, '   ', finalArrOfSspNames, '   ', arrOfLocationSsp);
     
         //delete some duplicate keys
         deleteDuplicates = cleanKeys.reduce((accumulator, curr) => {
@@ -186,12 +187,14 @@ function mySpecialFunction(initialDate, endDate, filename) {
             matchComments = commentsData.find(myElem => myElem['EnglishName'].trim() === elem['Common Name'])
     
             if (matchComments) {
-                //console.log(matchComments);
+                console.log("comentarios: " ,matchComments);
                 /*if(elem['EnglishName'] === 'Booted Racket-tail'){
                     console.log(matchComments);
                 }*/
                 elem = {...elem, ...matchComments }
             }
+
+        
     
             let familyText = '';
     
@@ -581,6 +584,9 @@ function mySpecialFunction(initialDate, endDate, filename) {
     
                     if (value[elem]['black_comment']){
     
+                        //array of final comments 
+                        finalMatchComments.push(value[elem]['Common Name']);
+
                         pObj.addLineBreak();
                         pObj.addLineBreak();
                         blackComments = value[elem]['black_comment'];
@@ -627,7 +633,6 @@ function mySpecialFunction(initialDate, endDate, filename) {
                                     }
                                 }
                             }
-                 
                         }
                             
                       
@@ -768,6 +773,8 @@ function mySpecialFunction(initialDate, endDate, filename) {
                             }   
                             
                         }
+
+                        pObj.addLineBreak();
                     }
                    
                 }
@@ -776,6 +783,7 @@ function mySpecialFunction(initialDate, endDate, filename) {
                                     
                     if (value[elem]['light_blue_group']){
                         lightBlueGroup = value[elem]['light_blue_group'];
+                        finalMatchComments.push(value[elem]['Common Name']);
                         pObj.addLineBreak();
                         pObj.addLineBreak();
                         pObj.addText('       '+lightBlueGroup, {color: '0070C0', font_face: 'Calibri', font_size: 12 });
@@ -783,6 +791,7 @@ function mySpecialFunction(initialDate, endDate, filename) {
     
                     if (value[elem]['red_group']){
                         redGroup = value[elem]['red_group'];
+                        finalMatchComments.push(value[elem]['Common Name']);
                         pObj.addLineBreak();
                         pObj.addLineBreak();
                         pObj.addText('       '+redGroup, {color: 'ff0000' , font_face: 'Calibri', font_size: 12 });
@@ -790,6 +799,7 @@ function mySpecialFunction(initialDate, endDate, filename) {
     
                     if (value[elem]['light_purple_group']){
                         lightPurpleGroup = value[elem]['light_purple_group'];
+                        finalMatchComments.push(value[elem]['Common Name']);
                         pObj.addLineBreak();
                         pObj.addLineBreak();
                         pObj.addText('       '+lightPurpleGroup, {color:'CC00CC', font_face: 'Calibri', font_size: 12 });
@@ -797,6 +807,7 @@ function mySpecialFunction(initialDate, endDate, filename) {
     
                     if (value[elem]['comments_group']){
                         commentsGroup = value[elem]['comments_group'];
+                        finalMatchComments.push(value[elem]['Common Name']);
                         pObj.addLineBreak();
                         pObj.addLineBreak();
                         pObj.addText('       '+commentsGroup, {font_face: 'Calibri', font_size: 12 });
@@ -804,6 +815,7 @@ function mySpecialFunction(initialDate, endDate, filename) {
     
                     if (value[elem]['blue_3']){
                         blueThree = value[elem]['blue_3'];
+                        finalMatchComments.push(value[elem]['Common Name']);
                         pObj.addLineBreak();
                         pObj.addLineBreak();
                         pObj.addText('       '+blueThree, {color: '0070C0', font_face: 'Calibri', font_size: 12 });
@@ -811,6 +823,7 @@ function mySpecialFunction(initialDate, endDate, filename) {
                     
                     if (value[elem]['red_3']){
                         redThree = value[elem]['red_3'];
+                        finalMatchComments.push(value[elem]['Common Name']);
                         pObj.addLineBreak();
                         pObj.addLineBreak();
                         pObj.addText('       '+redThree, {color: 'ff0000', font_face: 'Calibri', font_size: 12 });
@@ -825,6 +838,7 @@ function mySpecialFunction(initialDate, endDate, filename) {
     
                     if (value[elem]['light_blue_group2']){
                         lightBlueGroup2 = value[elem]['light_blue_group2'];
+                        finalMatchComments.push(value[elem]['Common Name']);
                         pObj.addLineBreak();
                         pObj.addLineBreak();
                         pObj.addText('       '+lightBlueGroup2, {color:'0070C0', font_face: 'Calibri', font_size: 12 });
@@ -832,6 +846,7 @@ function mySpecialFunction(initialDate, endDate, filename) {
     
                     if (value[elem]['red_group2']){
                         redGroup2 = value[elem]['red_group2'];
+                        finalMatchComments.push(value[elem]['Common Name']);
                         pObj.addLineBreak();
                         pObj.addLineBreak();
                         pObj.addText('       '+redGroup2, { color: 'ff0000', font_face: 'Calibri', font_size: 12 });
@@ -1078,7 +1093,7 @@ function mySpecialFunction(initialDate, endDate, filename) {
                             //addCommentsGroup();
         
                         pObj.addLineBreak()
-                        pObj.addLineBreak()
+
                         pObj.addText(locationDetails, { font_face: 'Calibri', font_size: 12 })
     
                         pObj.addLineBreak()
@@ -1090,33 +1105,45 @@ function mySpecialFunction(initialDate, endDate, filename) {
             }
         }
     
-        /*
-        for (let [key, value] of Object.entries(objectFormat)) {
-    
-            console.log("key: ", key)
-    
-            value.map(elem => console.log(elem))
-    
-            let familyName = key;
-            let commonName = value['Common Name'];
-            let scientificName = value['Scientific Name'];
-            let locationDetails = value['Location'];
-    
-            if (scientificName === 'Laterallus jamaicensis tuerosi') {
-                console.log('yes');
-            }
-            addEndemicMark = matchArray.filter(elem => elem === scientificName);
-    
-            //pObj = docx.createP()
-            //pObj.addText(familyName, { bold: true, color: '188c18', font_face: 'Calibri', font_size: 16 })
-            //pObj.addLineBreak()
-            //pObj.addText(commonName, { bold: true, font_face: 'Calibri', font_size: 12 })
-            //pObj.addText(scientificName, { bold: true, font_face: 'Calibri', font_size: 12 })
-            //pObj.addLineBreak()
-            //pObj.addText(locationDetails, { font_face: 'Calibri', font_size: 12 })
+        pObj1 = docx.createP()
+        pObj1.addText('ANEXO', {bold: true, color: '188c18', font_face: 'Calibri', font_size: 16 })
+        pObj1.addLineBreak()
+        pObj1.addLineBreak()
+        pObj1.addText('Scientific Names of Groups', {bold: true, font_face: 'Calibri', font_size: 16 })
+        pObj1.addLineBreak()
+        pObj1.addLineBreak()
+        for(let i = 0; i < arrayOfFinalGroups.length; i++){
+            pObj1.addText(arrayOfFinalGroups[i], {font_face: 'Calibri', font_size: 12 })
+            pObj1.addLineBreak()
         }
-        */
     
+        pObj1.addLineBreak()
+        pObj1.addText('Species with Comments', {bold: true, font_face: 'Calibri', font_size: 16 })
+        pObj1.addLineBreak()
+        pObj1.addLineBreak()
+
+        for(let i = 0; i < finalMatchComments.length; i++) {
+            pObj1.addText(finalMatchComments[i], {font_face: 'Calibri', font_size: 12 })
+            pObj1.addLineBreak()
+        }
+
+        pObj1.addLineBreak()
+        pObj1.addLineBreak()
+    
+        pObj1.addText('Comments SubSpecies', {bold: true, font_face: 'Calibri', font_size: 16 })
+        pObj1.addLineBreak()
+        pObj1.addLineBreak()
+
+        if(finalArrOfSsp.length === 0){
+            pObj1.addText('There are no comments for subspecies' , {font_face: 'Calibri', font_size: 12 })
+        }
+    
+        else{
+            for(let i = 0; i < finalArrOfSsp.length; i++) {
+                pObj1.addText(finalArrOfSsp[i], {font_face: 'Calibri', font_size: 12 })
+                pObj1.addLineBreak()
+            }
+        }
         // Let's generate the Word document into a file:
     
         let out = fs.createWriteStream('Report.docx')
