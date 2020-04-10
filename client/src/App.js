@@ -12,7 +12,7 @@ const App = () => {
     <div className = "container mt-4">
         <h4 className="display-4 text-center mb-4">
       
-            <p>{bird} Report Birding App</p>
+            <p>{bird} Birding Report App</p>
         </h4>
 
         <FileUpload />
