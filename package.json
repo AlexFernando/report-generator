@@ -27,7 +27,7 @@
         "csv-parser": "^2.3.2",
         "downloadjs": "^1.4.7",
         "express": "^4.17.1",
-        "express-fileupload": "^1.1.6"
+        "express-fileupload": "^1.1.9"
     },
     "devDependencies": {
         "concurrently": "^5.1.0",
